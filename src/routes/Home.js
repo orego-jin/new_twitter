@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const Home = ({userObj }) => {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
-  const [attachment, setAttachment] = useState();
+  const [attachment, setAttachment] = useState("");
 
   // const getNweets = async () => {
   //   const dbNweets = await dbService.collection("nweets").get();
@@ -32,7 +32,7 @@ const Home = ({userObj }) => {
     let attachmentUrl = "";
     if(attachment !== ""){
       const attachmentRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
-      const response = await attachmentRef .putString(attachment, "data_url");
+      const response = await attachmentRef.putString(attachment, "data_url");
   
       attachmentUrl = await response.ref.getDownloadURL(); 
     }
@@ -75,7 +75,7 @@ const Home = ({userObj }) => {
         <input type="submit" value="Nweet" />
         {attachment && (
           <div>
-            <img src={attachment} width='50px' height='50px'/>
+            <img src={attachment} width='50px' height='50px' alt="attachment"/>
             <button onClick={onClearAttachment}>Clear</button>
           </div>
         )}
