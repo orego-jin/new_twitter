@@ -34,7 +34,6 @@ const Auth = () => {
           email, password
         )
       }
-      console.log(data);
     } catch(error){
         console.log(error)
         setError(error.message)
